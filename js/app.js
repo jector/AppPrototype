@@ -9,6 +9,7 @@ const app = createApp({
             productsList: [
                 {
                     idProduct: 0,
+                    promoProduct: 1,
                     nameProduct: 'The First Berserker: Khazan',
                     mainPrice: 59.99,
                     soldPrice: 37.79,
@@ -46,6 +47,7 @@ const app = createApp({
                 },
                 {
                     idProduct: 1,
+                    promoProduct: 1,
                     nameProduct: 'Hades',
                     mainPrice: 24.99,
                     soldPrice: 6.24,
@@ -75,6 +77,27 @@ const app = createApp({
                     sortDescription: "Lead the members of Expedition 33 on their quest to destroy the Paintress so that she can never paint death again. Explore a world of wonders inspired by Belle Époque France and battle unique enemies in this turn-based RPG with real-time mechanics.",
                     longDescription:"Once a year, the Paintress wakes and paints upon her monolith. Paints her cursed number. And everyone past that age turns to smoke and fades away. Year by year, that number ticks down and more of us are erased. Tomorrow she’ll wake and paint “33.” And tomorrow we depart on our final mission - Destroy the Paintress, so she can never paint death again. We are Expedition 33. Clair Obscur: Expedition 33 is a ground-breaking turn-based RPG with unique real-time mechanics, making battles more immersive and addictive than ever. Explore a fantasy world inspired by Belle Époque France in which you battle devastating enemies.",
                     logoPicture: 'pictures/product03/logoMain02.png',
+                    publisher: 'Supergiant Games',
+                    developer: 'Supergiant Games',
+                    sourceP: 'Supergiant Games',
+                    genres: 'Action, Indie, RPG',
+                    platform: 'PC',
+                    released: 'Sep 17, 2020',
+                    sLanguages: 'English, French, German, Italian, Japanese, Korean, Polish, Portuguese-Brazil, Russian, Simplified Chinese, Spanish, Spanish-Latin America, Traditional Chinese, Turkish',
+
+                },
+                {
+                    idProduct: 4,
+                    promoProduct: 1,
+                    nameProduct: 'Blasphemous 2',
+                    mainPrice: 44.99,
+                    soldPrice: 26.99,
+                    discount: 40,
+                    mainPicture: 'pictures/product04/mainPict03.jpg',
+                    endOffer: 'September 29',
+                    sortDescription: "The Penitent One awakens as Blasphemous 2 joins him once again in an endless struggle against The Miracle. Dive into a perilous new world filled with mysteries and secrets to discover, and tear your way through monstrous foes that stand between you and your quest to end the cycle once and for all. ",
+                    longDescription:"Once a year, the Paintress wakes and paints upon her monolith. Paints her cursed number. And everyone past that age turns to smoke and fades away. Year by year, that number ticks down and more of us are erased. Tomorrow she’ll wake and paint “33.” And tomorrow we depart on our final mission - Destroy the Paintress, so she can never paint death again. We are Expedition 33. Clair Obscur: Expedition 33 is a ground-breaking turn-based RPG with unique real-time mechanics, making battles more immersive and addictive than ever. Explore a fantasy world inspired by Belle Époque France in which you battle devastating enemies.",
+                    logoPicture: 'pictures/product04/logoMain03.png',
                     publisher: 'Supergiant Games',
                     developer: 'Supergiant Games',
                     sourceP: 'Supergiant Games',
