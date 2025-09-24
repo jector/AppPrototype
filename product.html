@@ -8,24 +8,24 @@
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-<header class="p-3 text-bg-dark">
+<body id="app">
+<header class="p-1 text-bg-dark">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start py-2">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="index.html" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="productList.html" class="nav-link px-2 text-white">Products</a></li>
             </ul>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-auto" role="search">
                 <input type="search"
-                       class="form-control form-control-dark text-bg-dark"
+                       id="search-input"
+                       class="form-control form-control-dark"
                        placeholder="Search..."
                        aria-label="Search">
             </form>
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
             <div class="dropdown ms-2">
@@ -34,7 +34,7 @@
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                     </svg>
                 </button>
-                <div class="dropdown-menu p-4 text-body-secondary dropdown-menu-end" style="min-width: 500px;">
+                <div class="dropdown-menu p-4 dropdown-menu-end" style="min-width: 500px;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center border-bottom">
                             1 item in your cart
@@ -63,7 +63,7 @@
 
                                     </div>
                                 </div>
-                                <p class="text-body-secondary small">Lowest price in the last 30 days before
+                                <p class=" small">Lowest price in the last 30 days before
                                     discount: $4.99</p>
                             </div>
 
@@ -76,222 +76,145 @@
 </header>
 
 <main>
-    <div class="py-2 mb-2 bg-secondary ">
-        <div href="product.html" class="card text-bg-dark">
-            <svg aria-hidden="true" class="bd-placeholder-img " height="500" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-            </svg>
-            <div class="card-img-overlay container">
-                <h5 class="card-title">Control Ultimate Edition</h5>
+    <div class="bg-black">
+        <div class="container">
+            <h1 class="fs-4 fw-bold pt-2">{{ getItemById(0).nameProduct }}</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-8 position-relative">
+                    <div class="position-absolute z-2 top-0 end-0 p-4 text-center mt-4 container ">
+                        <img :src="getItemById(0).logoPicture" alt="logMain">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card text-bg-dark border-0 rounded-0">
+            <img :src="getItemById(0).mainPicture" class="opacity-50" alt="Main">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-8 position-relative">
+                    <div class="position-absolute z-2 bottom-0 end-0 bg-dark bg-gradient mb-2 p-4 shadow container rounded-0 rounded-top-2 ">
+                        <div class="border-bottom pb-3 mb-3 row">
+                            <div class="col">{{getItemById(0).sortDescription}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pb-3">Buy {{getItemById(0).nameProduct}}
+                                SPECIAL PROMOTION! Offer ends {{getItemById(0).endOffer}}
+                            </div>
+                            <div class="col-4 border fs-4 text-center py-2"><strong>-{{getItemById(0).discount}}%</strong></div>
+                            <div class="col-4 text-center">
+                                <small class="small fs-6 text-decoration-line-through">${{getItemById(0).mainPrice}}</small>
+                                <p class="fs-2 m-0 lh-1"><strong class="lh-1">${{getItemById(0).soldPrice}}</strong></p>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <a href="cart.html" class="btn btn-primary col-12 my-2">Add to cart</a>
+                                <a href="cart.html" class="btn btn-success col-12">Buy Now</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 position-relative">
+                    <div class="position-absolute z-2  translate-middle top-0 start-50 p-4 text-center container ">
+                        <div id="carouselIndicators" class="carousel slide py-4">
+                            <div class="carousel-indicators mb-0">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                        class="active"
+                                        aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                        aria-label="Slide 2"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="container">
+                                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail01" class="shadow" alt="th01">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail02" class="shadow" alt="th02">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail03" class="shadow" alt="th03">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="container">
+                                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail04" class="shadow" alt="th04">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail05" class="shadow" alt="th05">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    <div class="card shadow-sm border-0 rounded-0 shadow">
+                                                        <img :src="getItemById(0).thumbnail06" class="shadow" alt="th06">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row ">
-            <div class="col-md-7">
-                <h1>Control Ultimate Edition</h1>
-                <p><span>3.9/5</span> | <span>English & 10 more</span></p>
-            </div>
-            <div class="col-md-5 position-relative">
-                <div class="position-absolute top-0 start-50 translate-middle bg-light bg-gradient w-100 p-5 shadow">
-                    <div>
-                        Offer ends on: 09/22/2025 09:59 EEST
-                    </div>
-                    <div>
-                        <div>-90%</div>
-                        <div><span>$39.99</span>
-                            <span>$3.99</span>
-                        </div>
-                    </div>
-                    <div>
-                        <p>Lowest price in the last 30 days before discount: $39.99</p>
-                        <div>
-                            <a href="cart.html" class="btn btn-primary">Add to cart</a>
-                            <a href="cart.html" class="btn btn-success">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="carouselExampleIndicators" class="carousel slide py-5">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <div class="card shadow-sm">
-                                    <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                    </svg>
-                                </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <div class="card shadow-sm">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <div class="row ">
+    <div class="container px-5">
+        <div class="row mt-4">
             <div class="col-md-8 pe-5">
-                <div>
+                <div class="pt-5 mt-5">
                     <h5>Description</h5>
-                    <p>
-                        Control Ultimate Edition contains the main game and all previously released Expansions ("The
-                        Foundation" and "AWE") in one great value package.
-
-                        A corruptive presence has invaded the Federal Bureau of Control…Only you have the power to stop
-                        it. The world is now your weapon in an epic fight to annihilate an ominous enemy through deep
-                        and unpredictable environments. Containment has failed, humanity is at stake. Will you regain
-                        control?
-
-                        Winner of over 80 awards, Control is a visually stunning third-person action-adventure that will
-                        keep you on the edge of your seat. Blending open-ended environments with the signature
-                        world-building and storytelling of renowned developer, Remedy Entertainment, Control presents an
-                        expansive and intensely gratifying gameplay experience.
-                    </p>
+                    <p>{{getItemById(0).longDescription}}</p>
                 </div>
                 <div class="py-3">
                     <h5>System requirements</h5>
-                    <table class="table">
+                    <table class="table table-dark shadow">
                         <thead>
                         <tr>
                             <th colspan="2" scope="col">Minimum system requirements:</th>
@@ -301,137 +224,517 @@
                         <tbody>
                         <tr>
                             <th scope="row">System:</th>
-                            <td>Windows 10 (64-bit)Windows 10 (64-bit)</td>
-                            <td>Windows 10 (64-bit) or higher</td>
+                            <td>{{getItemById(0).systemMin}}</td>
+                            <td>{{getItemById(0).systemRec}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Processor:</th>
-                            <td>Intel Core i5-4690 / AMD FX 4350</td>
-                            <td>Intel Core i5-7600K / AMD Ryzen 5 1600X</td>
+                            <td>{{getItemById(0).processorMin}}</td>
+                            <td>{{getItemById(0).processorRec}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Memory:</th>
-                            <td>8 GB RAM</td>
-                            <td>16 GB RAM</td>
+                            <td>{{getItemById(0).memoryMin}}</td>
+                            <td>{{getItemById(0).memoryRec}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Graphics:</th>
-                            <td>NVIDIA GeForce GTX 780 / AMD Radeon R9 280X</td>
-                            <td>NVIDIA GeForce GTX 1660/1060 / AMD Radeon RX 580 AMD | For Ray Tracing: GeForce RTX
-                                2060
-                            </td>
+                            <td>{{getItemById(0).graphicsMin}}</td>
+                            <td>{{getItemById(0).graphicsRec}}</td>
                         </tr>
                         <tr>
                             <th scope="row">DirectX:</th>
-                            <td>Version 11</td>
-                            <td>Version 12</td>
+                            <td>{{getItemById(0).directXMin}}</td>
+                            <td>{{getItemById(0).directXRec}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Storage:</th>
-                            <td>42 GB available space</td>
-                            <td>42 GB available space</td>
+                            <td>{{getItemById(0).storageMin}}</td>
+                            <td>{{getItemById(0).storageRec}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Other:</th>
-                            <td>Additional Features: Widescreen support 21:9 / Remappable controls / Uncapped frame-rate
-                                / G-Sync / Freesync support
-                            </td>
-                            <td>Additional Features: Widescreen support 21:9 / Remappable controls / Uncapped frame-rate
-                                / G-Sync / Freesync support
-                            </td>
-                        </tr>
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="col-md-4">
-                <div><h5>Time to beat</h5>
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
-                            <div class="col">
-                                <div href="product.html" class="card text-bg-dark">
-                                    <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                    </svg>
-                                    <div class="card-img-overlay text-center">
-                                        <h5 class="card-title">17 h</h5>
-                                        <p class="card-text"><small>Main</small></p>
+                <div class="py-3">
+                    <h5>Game details</h5>
+                    <table class="table table-dark shadow">
+                        <tbody>
+                        <tr>
+                            <td>Publisher:</td>
+                            <td>{{getItemById(0).publisher}}</td>
+                        </tr>
+                        <tr>
+                            <td>Developer:</td>
+                            <td>{{getItemById(0).developer}}</td>
+                        </tr>
+                        <tr>
+                            <td>Source:</td>
+                            <td>{{getItemById(0).sourceP}}</td>
+                        </tr>
+                        <tr>
+                            <td>Genres:</td>
+                            <td>{{getItemById(0).genres}}</td>
+                        </tr>
+                        <tr>
+                            <td>Platform:</td>
+                            <td>{{getItemById(0).platform}}</td>
+                        </tr>
+                        <tr>
+                            <td>Released:</td>
+                            <td>{{getItemById(0).released}}</td>
+                        </tr>
+                        <tr>
+                            <td>Supported Languages</td>
+                            <td>{{getItemById(0).sLanguages}}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="py-3 container px-0">
+                    <h5>You may like these products</h5>
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="col">
-                                <div href="product.html" class="card text-bg-dark">
-                                    <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                    </svg>
-                                    <div class="card-img-overlay text-center">
-                                        <h5 class="card-title">26 h</h5>
-                                        <p class="card-text"><small>Main + Sides</small></p>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="col">
-                                <div href="product.html" class="card text-bg-dark">
-                                    <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                    </svg>
-                                    <div class="card-img-overlay text-center">
-                                        <h5 class="card-title">41 h</h5>
-                                        <p class="card-text"><small>Completionist</small></p>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="col">
-                                <div href="product.html" class="card text-bg-dark">
-                                    <svg aria-hidden="true" class="bd-placeholder-img " height="150" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                                    </svg>
-                                    <div class="card-img-overlay text-center">
-                                        <h5 class="card-title">22.5 h</h5>
-                                        <p class="card-text"><small>All Styles</small></p>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
                                     </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-dark text-white">
+                                <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="125"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+
+                                <div class="card-img-overlay container">
+                                    <div class="row">
+                                        <h5 class="card-title mt-1 mb-4 p-0">Neversong</h5>
+                                        <div class="col-4 border fs-6 text-center py-2 px-0"><strong>-90%</strong></div>
+                                        <div class="col-8 text-end">
+                                            <small class="small fs-6 text-decoration-line-through">$39.99</small>
+                                            <p class="fs-6 m-0 lh-1"><strong class="lh-1">$3.99</strong></p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="py-3">
-                    <h5>Game details</h5>
-                    <table class="table table-hover">
-                        <tbody>
-                        <tr>
-                            <td>Genre:</td>
-                            <td>Action - Adventure - Sci-fi</td>
-                        </tr>
-                        <tr>
-                            <td>Tags:</td>
-                            <td>Adventure, Action, Story Rich, Atmospheric, Sci-fi, show 7 more...</td>
-                        </tr>
-                        <tr>
-                            <td>Works on:</td>
-                            <td>Windows (10, 11)</td>
-                        </tr>
-                        <tr>
-                            <td>Release date:</td>
-                            <td>September 10, 2020</td>
-                        </tr>
-                        <tr>
-                            <td>Company:</td>
-                            <td>Remedy Entertainment / Remedy Entertainment</td>
-                        </tr>
-                        <tr>
-                            <td>Size:</td>
-                            <td>27.1 GB</td>
-                        </tr>
-                        <tr>
-                            <td>Rating:</td>
-                            <td>ESRB Rating: Mature 17+ (Violence, Blood, Strong Language)</td>
-                        </tr>
-                        </tbody>
-                    </table>
+            </div>
+            <div class="col-12">
+                <h5>Reviews</h5>
+                <span>Check what our customers think of this title</span>
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-8 pe-5">
+                            <div class="border row rounded border-bottom mb-4">
+                                <div class="col-7 container py-4">1 - 5 of 15 reviews</div>
+                                <div class="col-5 container py-3">
+                                    <div class="row">
+                                        <label for="staticEmail2" class="col-5 col-form-label text-end">Sort by:</label>
+                                        <div class="col-7">
+                                            <select class="form-select " aria-label="Default select" id="staticEmail2">
+                                                <option selected>Newest</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
 
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="border row rounded mb-2">
+                                <div class="col-2 py-5 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                    </svg>
+                                    <p>Manolo</p>
+                                </div>
+                                <div class="col-10 p-3">
+                                    <small>Posted on: May 7, 2012</small>
+                                    <p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                    </p>
+                                    <h6>Engaging story and great graphics</h6>
+                                    <p>
+                                        Alan Wake's main strength is its excellent storyline. It reminds me of a Stephen
+                                        King novel or film. The game is also broken into "episodes" and each episode
+                                        starts and ends like a TV miniseries, which I found very stylish.
+                                    </p>
+                                    <p>
+                                        The graphics are fantastic. The levels are surprisingly large and there are
+                                        quite a few beautiful vistas to behold. The lighting is excellent and the "god
+                                        rays" effect is probably the best I've ever seen in any game to date.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="border row rounded mb-2">
+                                <div class="col-2 py-5 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                    </svg>
+                                    <p>Manolo</p>
+                                </div>
+                                <div class="col-10 p-3">
+                                    <small>Posted on: May 7, 2012</small>
+                                    <p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                    </p>
+                                    <h6>Engaging story and great graphics</h6>
+                                    <p>
+                                        Alan Wake's main strength is its excellent storyline. It reminds me of a Stephen
+                                        King novel or film. The game is also broken into "episodes" and each episode
+                                        starts and ends like a TV miniseries, which I found very stylish.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="border row rounded mb-2">
+                                <div class="col-2 py-5 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                    </svg>
+                                    <p>Manolo</p>
+                                </div>
+                                <div class="col-10 p-3">
+                                    <small>Posted on: May 7, 2012</small>
+                                    <p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                              class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                                    </p>
+                                    <h6>Engaging story and great graphics</h6>
+                                    <p>
+                                        The graphics are fantastic. The levels are surprisingly large and there are
+                                        quite a few beautiful vistas to behold. The lighting is excellent and the "god
+                                        rays" effect is probably the best I've ever seen in any game to date.
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <h6>Overall item rating</h6>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="fs-2 fw-bold text-center border">4.94</p>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="m-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                      class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                      class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                      class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>
+                                            </p>
+                                            <small>16 reviews</small>
+                                        </div>
+                                        <p class="fs-6">16 out of 16 (100%) reviewers recommend this
+                                            item</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h6>Rating</h6>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="align-text-bottom">5</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                  class="bi bi-star-fill align-baseline"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-9 py-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            15
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="align-text-bottom">4</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                  class="bi bi-star-fill align-baseline"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-9 py-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: 10%" aria-valuenow="10" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            1
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="align-text-bottom">3</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                  class="bi bi-star-fill align-baseline"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-9 py-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: 0" aria-valuenow="0" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="align-text-bottom">2</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                  class="bi bi-star-fill align-baseline"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-9 py-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: 0" aria-valuenow="0" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="align-text-bottom">1</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                  class="bi bi-star-fill align-baseline"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-9 py-1">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                     style="width: 0" aria-valuenow="0" aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -440,17 +743,17 @@
 
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2">About</a></li>
     </ul>
-    <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
-
+    <p class="text-center">© 2025 Company, Inc</p></footer>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -464,10 +767,16 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script type="module">
+    // create the app
+    import app from './js/app.js';
+
+    // tell it to run on the div #app
+    app.mount('#app');
+</script>
 </body>
 </html>
+<script type="module" src="https://unpkg.com/vue@3/dist/vue.esm-browser.js"></script>
