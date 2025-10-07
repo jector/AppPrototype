@@ -11,7 +11,7 @@ $secundary: #4dc86c;
 }
  */
 
-
+$primary: #D9992C;
 
 body{
   font-family: rawline, Arial, Helvetica, sans-serif;
@@ -19,6 +19,13 @@ body{
   line-height: 1.428571429;
   color: #e8e5e0;
   background-color: #27282e;
+}
+a{
+  color: #D9992C;
+  text-decoration: none;
+}
+a:hover{
+  opacity: .8;
 }
 
 /* For the collapsed state */
@@ -50,4 +57,19 @@ body{
 
 .bi-star-fill{
   fill: rgba(255, 193, 7, 1);
+}
+
+.nav-link{
+  color: #D9992C;
+}
+.btn-info{
+  background-color: #27282e;
+  border-color: #98a499 !important;
+  color: #e8e5e0;
+}
+
+.bg-info{
+  background-color: #27282e !important;
+  color: #e8e5e0 !important;
+  border: solid 1px #98a499 !important;
 }

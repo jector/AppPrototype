@@ -18,13 +18,13 @@
                 <li><a href="index.html" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="productList.html" class="nav-link px-2 text-white">Products</a></li>
             </ul>
-            <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-auto" role="search">
+            <!--<form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-auto" role="search">
                 <input type="search"
                        id="search-input"
                        class="form-control form-control-dark"
                        placeholder="Search..."
                        aria-label="Search">
-            </form>
+            </form>-->
             <div class="text-end">
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
@@ -90,7 +90,7 @@
                     <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <div class="col-md-4 position-relative " v-for="game in productsList" :key="game.idProduct">
                             <a href="product.html" class="card text-bg-dark overflow-hidden rounded-2 shadow">
-                                <img v-bind:src="game.mainPicture" height="200" class="position-absolute top-0 start-50 translate-middle-x" alt="`{{game.nameProduct}}`">
+                                <img :src="game.mainPicture" height="200" class="position-absolute top-0 start-50 translate-middle-x" alt="`{{game.nameProduct}}`">
                                 <svg aria-label="Placeholder: Card image" class="bd-placeholder-img bd-placeholder-img-lg card-img"
                                      height="200" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
                                      xmlns="http://www.w3.org/2000/svg"><title>Placeholder</title>
@@ -228,4 +228,3 @@
 </script>
 </body>
 </html>
-<script src="https://unpkg.com/vue@3/dist/vue.esm-browser.js"></script>

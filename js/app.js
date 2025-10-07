@@ -6,10 +6,50 @@ const app = createApp({
         return {
             //name: "Hector",
 
+            newProduct:{
+                idProduct: 0,
+                promoProduct: 1,
+                nameProduct: '',
+                mainPrice: 0,
+                soldPrice: 0,
+                discount: 0,
+                endOffer: '',
+                mainPicture: '',
+                logoPicture: '',
+                thumbnail01: '',
+                thumbnail02: '',
+                thumbnail03: '',
+                thumbnail04: '',
+                thumbnail05: '',
+                thumbnail06: '',
+                publisher: '',
+                developer: '',
+                sourceP: '',
+                genres: '',
+                platform: '',
+                released: '',
+                sLanguages: '',
+                systemMin:'',
+                systemRec:'',
+                processorMin:'',
+                processorRec:'',
+                memoryMin:'',
+                memoryRec:'',
+                graphicsMin:'',
+                graphicsRec:'',
+                directXMin:'',
+                directXRec:'',
+                storageMin:'',
+                storageRec:'',
+                sortDescription: "",
+                longDescription: "",
+            },
             productsList: [
                 {
                     idProduct: 0,
-                    promoProduct: 1,
+                    promoProduct: true,
+                    trendingProduct: true,
+                    activeProduct: "active",
                     nameProduct: 'The First Berserker: Khazan',
                     mainPrice: 59.99,
                     soldPrice: 37.79,
@@ -47,7 +87,7 @@ const app = createApp({
                 },
                 {
                     idProduct: 1,
-                    promoProduct: 1,
+                    promoProduct: true,
                     nameProduct: 'Hades',
                     mainPrice: 24.99,
                     soldPrice: 6.24,
@@ -69,6 +109,7 @@ const app = createApp({
                 {
                     idProduct: 3,
                     nameProduct: 'Clair Obscur: Expedition 33',
+                    trendingProduct: true,
                     mainPrice: 59.99,
                     soldPrice: 53.99,
                     discount: 10,
@@ -88,7 +129,8 @@ const app = createApp({
                 },
                 {
                     idProduct: 4,
-                    promoProduct: 1,
+                    promoProduct: true,
+                    trendingProduct: true,
                     nameProduct: 'Blasphemous 2',
                     mainPrice: 44.99,
                     soldPrice: 26.99,
@@ -119,14 +161,27 @@ const app = createApp({
     },
 
     // computed: values that are updated and cached if dependencies change
-    computed: {},
+    computed: {
+        filteredMainCarousel() {
+            return this.productsList.filter(item => item.promoProduct);
+        },
+        filteredMainTrending() {
+            return this.productsList.filter(item => item.trendingProduct);
+        }
+
+
+
+    },
 
     //mounted:  called after the instance has been mounted,
     mounted: function () {},
 
     // watch:   calls the function if the value changes
     // https://travishorn.com/add-localstorage-to-your-vue-app-in-2-lines-of-code-56eb2c9f371b
-    watch: {},
+    watch: {
+
+        deep: true,
+    },
 });
 
 export default app;

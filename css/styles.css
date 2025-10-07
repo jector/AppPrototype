@@ -18,6 +18,15 @@ body {
   background-color: #27282e;
 }
 
+a {
+  color: #D9992C;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
 /* For the collapsed state */
 .accordion-button.collapsed::after {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
@@ -47,6 +56,22 @@ body {
 
 .bi-star-fill {
   fill: rgb(255, 193, 7);
+}
+
+.nav-link {
+  color: #D9992C;
+}
+
+.btn-info {
+  background-color: #27282e;
+  border-color: #98a499 !important;
+  color: #e8e5e0;
+}
+
+.bg-info {
+  background-color: #27282e !important;
+  color: #e8e5e0 !important;
+  border: solid 1px #98a499 !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
